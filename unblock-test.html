@@ -1,0 +1,31 @@
+<head>
+  <title>unblock-test</title>
+</head>
+
+<body>
+  {{> main}}
+</body>
+
+<template name="main">
+  <p>Method 1 and 2 take at least 5 seconds to run.
+     Method 3 should be near instantaneous.</p>
+  <p>Method 1 is blocking. Method 2 is not.
+     Both Method 1 and 2 call this.unblock().</p>
+
+  <button id="m1" disabled="{{#if m1Called}}true{{/if}}">
+    Method 1: Insert (stub + server)</button> 
+  <button id="m2" disabled="{{#if m2Called}}true{{/if}}">
+    Method 2: Insert (server only)</button> 
+  <button id="m3" disabled="{{#if m3Called}}true{{/if}}">
+    Method 3: No insert</button>
+  
+  <hr />
+
+  <button id="resub">Unsubscribe / Resubscribe</button>
+  Subscription: {{#unless subReady}}Not {{/unless}}Ready<br />
+  <br />
+  Items in Collection: <br />
+  {{#each items}}
+    {{ _id }} | {{ date }}<br />
+  {{/each}}
+</template>
